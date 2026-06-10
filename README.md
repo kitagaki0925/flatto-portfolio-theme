@@ -60,22 +60,37 @@
 
 ```
 portfolio-theme/
-├── style.css               # テーマ定義
-├── functions.php           # テーマ機能（CPT・メタボックス・CF7・カスタマイザー）
-├── header.php / footer.php # ヘッダー / フッター
-├── front-page.php          # トップページ
-├── index.php               # ブログ一覧
-├── single.php / page.php   # 投稿 / 固定ページ
-├── archive-portfolio.php   # 作品一覧
-├── single-portfolio.php    # 作品詳細
-├── 404.php                 # 404ページ
+├── style.css                 # テーマ定義（ヘッダーコメント）
+├── functions.php             # テーマ機能（CPT・タクソノミー・メタボックス・CF7・カスタマイザー）
+├── header.php                # 共通ヘッダー
+├── footer.php                # 共通フッター（SNSリンク）
+├── front-page.php            # トップページ
+├── index.php                 # ブログ一覧（フォールバック）
+├── single.php                # ブログ記事詳細
+├── page.php                  # 汎用 固定ページ
+├── page-about.php            # 固定ページテンプレート「プロフィール（About）」
+├── page-privacy.php          # 固定ページテンプレート「プライバシーポリシー」
+├── page-corporate.php        # サービス詳細：コーポレートサイト（slug: corporate）
+├── page-web-design.php       # サービス詳細：Webデザイン（slug: web-design）
+├── page-lp.php               # サービス詳細：ランディングページ（slug: lp）
+├── page-wordpress.php        # サービス詳細：WordPress構築（slug: wordpress）
+├── archive-portfolio.php     # 作品一覧（アーカイブ）
+├── single-portfolio.php      # 作品詳細
+├── 404.php                   # 404ページ
 ├── template-parts/
-│   └── portfolio-card.php  # 作品カードパーツ
+│   └── portfolio-card.php    # 作品カードパーツ
 └── assets/
-    ├── css/main.css        # メインスタイルシート
-    ├── js/main.js          # アニメーション・インタラクション
-    └── images/             # ロゴ・ファビコン
+    ├── css/
+    │   └── main.css          # メインスタイルシート
+    ├── js/
+    │   └── main.js           # アニメーション・インタラクション
+    └── images/
+        ├── logo-light.svg    # ロゴ（ライト）
+        ├── logo-dark.svg     # ロゴ（ダーク）
+        └── favicon.svg       # ファビコン
 ```
+
+> サービス詳細ページ（corporate / web-design / lp / wordpress）は、対応するスラッグの固定ページを作成すると自動で適用される「`page-{slug}.php`」形式のテンプレートです。
 
 ## 推奨プラグイン
 
