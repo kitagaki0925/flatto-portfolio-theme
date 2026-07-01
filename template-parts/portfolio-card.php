@@ -10,7 +10,12 @@ $year      = get_post_meta(get_the_ID(), '_portfolio_year', true);
     <a href="<?php the_permalink(); ?>" class="work-card-link">
         <div class="work-card-image">
             <?php if (has_post_thumbnail()): ?>
-                <?php the_post_thumbnail('portfolio-thumb', ['alt' => get_the_title(), 'loading' => 'lazy']); ?>
+                <?php the_post_thumbnail('portfolio-thumb', [
+                    'alt'     => get_the_title(),
+                    'loading' => 'lazy',
+                    // 3カラム=384px / 2カラム=50vw / 1カラム=100vw。高DPI時はsrcsetから2x版が選択される
+                    'sizes'   => '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 384px',
+                ]); ?>
             <?php else: ?>
                 <div class="work-card-placeholder">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>

@@ -299,7 +299,9 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
   overflow: hidden;
   padding-top: var(--header-h);
 }
@@ -339,10 +341,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-content {
   position: relative;
-  z-index: 1;
-  max-width: 900px;
+  z-index: 2;                /* スクリム(1)より前面に */
+  max-width: 760px;
+  margin: 0 auto;            /* 中央寄せ */
   padding: 80px 24px;
+  text-align: center;
 }
+.hero-content .hero-actions { justify-content: center; margin-bottom: 0; }
+.hero-content .hero-subcopy { margin-left: auto; margin-right: auto; }
 
 .hero-tag {
   display: inline-flex;
@@ -423,6 +429,80 @@ h1, h2, h3, h4, h5, h6 {
   width: 1px;
   height: 40px;
   background: var(--border);
+}
+
+/* ── Hero Works Columns（実績を全面背景に縦スクロール）──── */
+/* 画面いっぱいに実績サムネイルの縦カラムを斜めに流し、その上に
+   スクリム（暗幕）＋中央のタイトルを重ねる没入型ファーストビュー */
+.hero-columns {
+  position: absolute;
+  inset: -20% -10%;          /* 斜め回転で四隅が空かないよう外側へ広げる */
+  z-index: 0;
+  display: flex;
+  gap: 16px;
+  transform: rotate(-9deg) scale(1.3);
+  pointer-events: none;
+}
+.hero-col { flex: 1; overflow: hidden; }
+.hero-col-track {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  will-change: transform;
+}
+/* 隣り合うカラムを上下反対方向に流し、速度も変えて有機的に見せる */
+.hero-col:nth-child(odd)  .hero-col-track { animation: hero-col-up   40s linear infinite; }
+.hero-col:nth-child(even) .hero-col-track { animation: hero-col-down 48s linear infinite; }
+.hero-col:nth-child(2) .hero-col-track { animation-duration: 52s; }
+.hero-col:nth-child(3) .hero-col-track { animation-duration: 60s; }
+.hero-col:nth-child(4) .hero-col-track { animation-duration: 44s; }
+.hero-col:nth-child(5) .hero-col-track { animation-duration: 56s; }
+
+.hero-tile {
+  flex: 0 0 auto;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+}
+.hero-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 暗幕：中央を少し明るく残しつつ全体を暗くしてタイトルを読みやすく */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(8,8,16,0.55) 0%, rgba(8,8,16,0.86) 70%),
+    rgba(8,8,16,0.35);
+}
+
+/* 同じ並びを2回出力しているので、-50% でちょうど1周期＝シームレスにループ */
+@keyframes hero-col-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+@keyframes hero-col-down {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero-columns { transform: rotate(-9deg) scale(1.5); gap: 12px; }
+  /* スマホでは3カラム目以降を隠して2カラム構成に */
+  .hero-col:nth-child(n+3) { display: none; }
+}
+
+/* 動きを抑える設定のユーザーには自動スクロールを止める */
+@media (prefers-reduced-motion: reduce) {
+  .hero-col-track { animation: none !important; }
 }
 
 .scroll-indicator {

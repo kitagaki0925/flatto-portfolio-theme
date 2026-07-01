@@ -83,7 +83,12 @@
                    class="lightbox-trigger"
                    data-caption="<?php echo esc_attr(get_the_title()); ?>"
                    aria-label="<?php echo esc_attr(get_the_title()); ?>の画像を拡大">
-                    <?php the_post_thumbnail('portfolio-hero', ['class' => 'portfolio-main-img', 'alt' => get_the_title()]); ?>
+                    <?php the_post_thumbnail('portfolio-hero', [
+                        'class' => 'portfolio-main-img',
+                        'alt'   => get_the_title(),
+                        // コンテナ幅いっぱい(最大1152px)。高DPI時はsrcsetから2x版が選択される
+                        'sizes' => '(max-width: 1200px) calc(100vw - 48px), 1152px',
+                    ]); ?>
                     <span class="lightbox-hint" aria-hidden="true">
                         <span class="lightbox-hint-inner">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>

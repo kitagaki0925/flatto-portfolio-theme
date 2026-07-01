@@ -13,7 +13,9 @@ function portfolio_pro_setup() {
         'flex-height' => true,
     ]);
     add_image_size('portfolio-thumb', 800, 600, true);
+    add_image_size('portfolio-thumb-2x', 1600, 1200, true); // 高解像度(Retina)ディスプレイ向け
     add_image_size('portfolio-hero', 1200, 800, true);
+    add_image_size('portfolio-hero-2x', 2400, 1600, true); // 高解像度(Retina)ディスプレイ向け
 
     register_nav_menus([
         'primary' => __('Primary Menu', 'portfolio-pro'),

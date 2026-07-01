@@ -33,9 +33,59 @@
             </div>
             <?php /* 実績カウンター：非表示 */ ?>
         </div>
+
+        <?php
+        // ── 実績カラム（無限縦スクロール）：サムネイル付きの制作実績を全面背景に流す ──
+        $hero_cols_count = 5; // PC表示でのカラム数（CSS側でスマホ時は減らす）
+        $hero_q = new WP_Query([
+            'post_type'      => 'portfolio',
+            'posts_per_page' => 20,
+            'post_status'    => 'publish',
+            'orderby'        => 'rand',
+            'meta_query'     => [['key' => '_thumbnail_id']], // アイキャッチ画像があるものだけ
+        ]);
+        $tiles = [];
+        if ($hero_q->have_posts()) {
+            while ($hero_q->have_posts()) { $hero_q->the_post();
+                $tiles[] = get_the_post_thumbnail(get_the_ID(), 'portfolio-thumb', [
+                    'alt'     => '', // 装飾目的なので alt は空に
+                    'loading' => 'lazy',
+                    'sizes'   => '(max-width: 768px) 45vw, 300px',
+                ]);
+            }
+            wp_reset_postdata();
+        }
+
+        if (!empty($tiles)) {
+            // 各カラムを隙間なく流すため最低本数を確保（カラム数 × 4）
+            $min_tiles = $hero_cols_count * 4;
+            while (count($tiles) < $min_tiles) { $tiles = array_merge($tiles, $tiles); }
+
+            // カラムごとにラウンドロビンで振り分け
+            $columns = array_fill(0, $hero_cols_count, []);
+            foreach ($tiles as $i => $tile) {
+                $columns[$i % $hero_cols_count][] = $tile;
+            }
+        ?>
+        <div class="hero-columns" aria-hidden="true">
+            <?php foreach ($columns as $col): ?>
+            <div class="hero-col">
+                <div class="hero-col-track">
+                    <?php // 同じ並びを2回出力してシームレスにループ（-50%でちょうど1周期）
+                    for ($copy = 0; $copy < 2; $copy++):
+                        foreach ($col as $tile): ?>
+                        <div class="hero-tile"><?php echo $tile; ?></div>
+                    <?php endforeach; endfor; ?>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <?php } else { ?>
         <div class="scroll-indicator">
             <span></span>
         </div>
+        <?php } ?>
     </section>
 
     <!-- ── About Section ────────────────────────────────────── -->
