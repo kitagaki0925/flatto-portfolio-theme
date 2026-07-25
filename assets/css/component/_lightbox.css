@@ -1,0 +1,94 @@
+/* =========================================================
+   Component / Lightbox
+   ========================================================= */
+.c-lightbox-trigger {
+  display: block;
+  cursor: zoom-in;
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.c-lightbox-trigger::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background var(--transition);
+  pointer-events: none;
+}
+.c-lightbox-trigger:hover::after {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.c-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.92);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.c-lightbox.is-open {
+  display: flex;
+}
+
+.c-lightbox__inner {
+  position: relative;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  animation: lbZoomIn 0.25s ease;
+}
+
+.c-lightbox__close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.c-lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.c-lightbox__img {
+  display: block;
+  max-width: 90vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+  cursor: zoom-in;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.c-lightbox__img.is-zoomed {
+  transform: scale(3.2);
+  cursor: zoom-out;
+}
+
+.c-lightbox__caption {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  margin-top: 12px;
+  text-align: center;
+}
+
+@keyframes lbZoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}

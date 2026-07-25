@@ -1,0 +1,41 @@
+/* =========================================================
+   Project / Contact（トップページ）
+   ========================================================= */
+.p-contact__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 64px;
+}
+.p-contact__info .c-heading { margin-bottom: 16px; }
+.p-contact__info > p { color: var(--text-muted); margin-bottom: 32px; }
+.p-contact__features { display: flex; flex-direction: column; gap: 12px; }
+.p-contact__feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+.p-contact__feature-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(124,58,237,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-1);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .p-contact__wrapper { grid-template-columns: 1fr; padding: 40px 28px; gap: 48px; }
+}
+@media (max-width: 480px) {
+  .p-contact__wrapper { padding: 28px 20px; }
+}

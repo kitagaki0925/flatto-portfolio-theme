@@ -1,0 +1,39 @@
+/* =========================================================
+   Component / Post Navigation（前後の記事・作品への導線）
+   single.php と single-portfolio.php で共通利用
+   ========================================================= */
+.c-post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.c-post-nav--bordered {
+  margin-top: 48px;
+  margin-bottom: 0;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.c-post-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  max-width: 300px;
+}
+.c-post-nav__link:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+.c-post-nav__link--next { margin-left: auto; text-align: right; }
+
+.c-post-nav__label { display: block; font-size: 0.75rem; color: var(--text-faint); margin-bottom: 4px; }
+.c-post-nav__title { display: block; font-weight: 600; font-size: 0.9375rem; }
+
+@media (max-width: 768px) {
+  .c-post-nav { flex-direction: column; }
+  .c-post-nav__link { max-width: 100%; }
+}

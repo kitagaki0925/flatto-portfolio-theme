@@ -1,0 +1,50 @@
+/* =========================================================
+   Project / Global Header
+   l-header の中身（ロゴ・ナビ・CTA）の組み方
+   ========================================================= */
+.p-global-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  height: 100%;
+}
+
+.p-global-header__logo { flex-shrink: 0; display: flex; align-items: center; }
+.p-global-header__logo img { height: 36px; width: auto; }
+.p-global-header__logo svg { width: 180px; height: auto; transition: opacity 0.3s; }
+
+.p-global-header__nav { margin-left: auto; }
+.p-global-header__cta { flex-shrink: 0; }
+
+@media (max-width: 768px) {
+  .p-global-header__nav,
+  .p-global-header__cta { display: none; }
+  .p-global-header__logo svg { width: 240px; }
+}
+
+/* ── Mobile Menu ───────────────────────────────────────── */
+.p-mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 80vw);
+  background: #0e0e1a;
+  border-left: 1px solid var(--border);
+  z-index: 99;
+  padding: calc(var(--header-h) + 24px) 32px 32px;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.p-mobile-menu.is-open { transform: translateX(0); }
+
+.p-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 98;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.p-mobile-overlay.is-open { opacity: 1; pointer-events: all; }

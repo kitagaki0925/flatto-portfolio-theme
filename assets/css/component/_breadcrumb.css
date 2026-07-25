@@ -1,0 +1,13 @@
+/* =========================================================
+   Component / Breadcrumb
+   ========================================================= */
+.c-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+.c-breadcrumb a:hover { color: var(--text); }
+.c-breadcrumb__separator { color: var(--text-faint); }

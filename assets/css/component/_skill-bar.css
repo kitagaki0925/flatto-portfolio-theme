@@ -1,0 +1,29 @@
+/* =========================================================
+   Component / Skill Bar
+   ========================================================= */
+.c-skill-list {
+  margin: 32px 0 40px;
+  display: grid;
+  gap: 16px;
+}
+.c-skill-bar__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.c-skill-bar__level { color: var(--text-muted); }
+.c-skill-bar__track {
+  height: 6px;
+  background: var(--bg-card);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.c-skill-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  border-radius: 3px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -6,7 +6,7 @@
   const header = document.getElementById('site-header');
   if (header) {
     const onScroll = () => {
-      header.classList.toggle('scrolled', window.scrollY > 20);
+      header.classList.toggle('is-scrolled', window.scrollY > 20);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -18,37 +18,37 @@
   const overlay    = document.getElementById('mobile-overlay');
 
   function openMenu() {
-    mobileMenu.classList.add('open');
-    overlay.classList.add('show');
-    hamburger.classList.add('active');
+    mobileMenu.classList.add('is-open');
+    overlay.classList.add('is-open');
+    hamburger.classList.add('is-active');
     hamburger.setAttribute('aria-expanded', 'true');
     mobileMenu.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
-    mobileMenu.classList.remove('open');
-    overlay.classList.remove('show');
-    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    hamburger.classList.remove('is-active');
     hamburger.setAttribute('aria-expanded', 'false');
     mobileMenu.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  if (hamburger) hamburger.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMenu() : openMenu());
+  if (hamburger) hamburger.addEventListener('click', () => mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu());
   if (overlay)   overlay.addEventListener('click', closeMenu);
 
-  document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', closeMenu));
+  document.querySelectorAll('.js-mobile-nav-link').forEach(link => link.addEventListener('click', closeMenu));
 
   // ── Scroll reveal ─────────────────────────────────────
-  const reveals = document.querySelectorAll('.reveal');
+  const reveals = document.querySelectorAll('.js-reveal');
   if (reveals.length) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
           const el = entry.target;
           const delay = el.style.getPropertyValue('--delay') || '0s';
-          setTimeout(() => el.classList.add('visible'), parseFloat(delay) * 1000);
+          setTimeout(() => el.classList.add('is-visible'), parseFloat(delay) * 1000);
           observer.unobserve(el);
         }
       });
@@ -58,7 +58,7 @@
   }
 
   // ── Skill bar animation ───────────────────────────────
-  const skillFills = document.querySelectorAll('.skill-fill');
+  const skillFills = document.querySelectorAll('.js-skill-fill');
   if (skillFills.length) {
     const skillObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -73,7 +73,7 @@
   }
 
   // ── Counter animation ─────────────────────────────────
-  const counters = document.querySelectorAll('.stat-number[data-count]');
+  const counters = document.querySelectorAll('.js-stat-number[data-count]');
   if (counters.length) {
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -98,13 +98,13 @@
   }
 
   // ── Portfolio filter ──────────────────────────────────
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const workCards  = document.querySelectorAll('.work-card');
+  const filterBtns = document.querySelectorAll('.js-work-filter-button');
+  const workCards  = document.querySelectorAll('.js-work-card');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      filterBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
 
       const filter = btn.dataset.filter;
       workCards.forEach(card => {
@@ -132,13 +132,13 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const btnText    = submit.querySelector('.btn-text');
-      const btnLoading = submit.querySelector('.btn-loading');
+      const btnText    = submit.querySelector('.js-btn-text');
+      const btnLoading = submit.querySelector('.js-btn-loading');
 
       btnText.hidden    = true;
       btnLoading.hidden = false;
       submit.disabled   = true;
-      result.className  = 'form-result';
+      result.className  = 'c-form__result';
       result.style.display = 'none';
 
       const data = new FormData(form);
@@ -150,12 +150,12 @@
         const json = await res.json();
 
         result.textContent = json.data?.message || (json.success ? '送信しました！' : 'エラーが発生しました。');
-        result.className   = 'form-result ' + (json.success ? 'success' : 'error');
+        result.className   = 'c-form__result ' + (json.success ? 'c-form__result--success' : 'c-form__result--error');
 
         if (json.success) form.reset();
       } catch (err) {
         result.textContent = 'ネットワークエラーが発生しました。';
-        result.className   = 'form-result error';
+        result.className   = 'c-form__result c-form__result--error';
       } finally {
         btnText.hidden    = false;
         btnLoading.hidden = true;
@@ -178,10 +178,10 @@
   // ── Lightbox ──────────────────────────────────────────
   const lightbox = document.getElementById('lightbox');
   if (lightbox) {
-    const lightboxImg     = lightbox.querySelector('.lightbox-img');
-    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
-    const lightboxClose   = lightbox.querySelector('.lightbox-close');
-    const lightboxInner   = lightbox.querySelector('.lightbox-inner');
+    const lightboxImg     = lightbox.querySelector('.js-lightbox-img');
+    const lightboxCaption = lightbox.querySelector('.js-lightbox-caption');
+    const lightboxClose   = lightbox.querySelector('.js-lightbox-close');
+    const lightboxInner   = lightbox.querySelector('.js-lightbox-inner');
 
     function openLightbox(src, alt) {
       lightboxImg.src = src;
@@ -199,7 +199,7 @@
     }
 
     // サムネイルクリックで開く
-    document.querySelectorAll('.lightbox-trigger').forEach(trigger => {
+    document.querySelectorAll('.js-lightbox-trigger').forEach(trigger => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         openLightbox(
@@ -210,7 +210,7 @@
     });
 
     // 本文内の画像クリックでも開く
-    document.querySelectorAll('.portfolio-content img').forEach(img => {
+    document.querySelectorAll('.js-lightbox-content img').forEach(img => {
       img.addEventListener('click', () => openLightbox(img.src, img.alt));
     });
 
@@ -248,8 +248,8 @@
   }
 
   // ── Parallax glow on hero ─────────────────────────────
-  const glow1 = document.querySelector('.hero-glow-1');
-  const glow2 = document.querySelector('.hero-glow-2');
+  const glow1 = document.querySelector('.js-hero-glow-1');
+  const glow2 = document.querySelector('.js-hero-glow-2');
   if (glow1 && glow2) {
     document.addEventListener('mousemove', (e) => {
       const x = (e.clientX / window.innerWidth  - 0.5) * 30;

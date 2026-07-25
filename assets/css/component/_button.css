@@ -1,0 +1,50 @@
+/* =========================================================
+   Component / Button
+   ========================================================= */
+.c-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.c-button--primary {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
+.c-button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.55);
+  color: #fff;
+}
+
+.c-button--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-hover);
+}
+.c-button--ghost:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.c-button--outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-hover);
+}
+.c-button--outline:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.c-button--lg { padding: 16px 32px; font-size: 1rem; border-radius: var(--radius-lg); }
+.c-button--full { width: 100%; justify-content: center; }

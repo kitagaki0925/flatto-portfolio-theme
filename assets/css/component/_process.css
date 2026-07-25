@@ -1,0 +1,53 @@
+/* =========================================================
+   Component / Process Steps
+   トップページと各サービスページで共通利用する「制作の流れ」
+   ========================================================= */
+.c-process-section {
+  background: var(--bg-2);
+}
+
+.c-process-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.c-process-steps__step {
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+  transition-delay: var(--delay, 0s);
+}
+.c-process-steps__number {
+  font-family: 'Syne', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.c-process-steps__content {}
+.c-process-steps__title { font-size: 1rem; margin-bottom: 8px; }
+.c-process-steps__desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+.c-process-steps__arrow {
+  position: absolute;
+  top: 20px;
+  right: -12px;
+  color: var(--text-faint);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .c-process-steps { flex-direction: column; gap: 24px; }
+  .c-process-steps__step { flex-direction: row; text-align: left; align-items: flex-start; padding: 0; width: 100%; }
+  .c-process-steps__number { font-size: 1.8rem; min-width: 64px; }
+  .c-process-steps__arrow { display: none; }
+}

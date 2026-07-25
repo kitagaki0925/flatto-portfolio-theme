@@ -14,20 +14,20 @@
 get_header();
 ?>
 
-<main class="site-main">
+<main class="l-main">
 
     <!-- Hero -->
-    <section class="service-hero">
-        <div class="container">
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="service-back animate-fade-up">
+    <section class="p-service-page__hero">
+        <div class="l-container">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="p-service-page__back u-fade-up">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
                 トップへ戻る
             </a>
-            <div class="section-label animate-fade-up">About</div>
-            <h1 class="service-hero-title animate-fade-up delay-1">
-                プロフィール<span class="text-gradient">／自己紹介</span>
+            <div class="c-eyebrow u-fade-up">About</div>
+            <h1 class="p-service-page__hero-title u-fade-up u-fade-up-delay-1">
+                プロフィール<span class="u-text-gradient">／自己紹介</span>
             </h1>
-            <p class="service-hero-desc animate-fade-up delay-2">
+            <p class="p-service-page__hero-desc u-fade-up u-fade-up-delay-2">
                 Webサイトを通じて、お客様の想いを丁寧に形にすること。
                 そして、誰にとっても心地よく伝わるWebを届けること。
                 その背景にある考え方をご紹介します。
@@ -36,9 +36,9 @@ get_header();
     </section>
 
     <!-- Profile -->
-    <section class="section">
-        <div class="container">
-            <article class="post-content legal-content">
+    <section class="l-section">
+        <div class="l-container">
+            <article class="c-wysiwyg c-wysiwyg--legal">
 
                 <h2>はじめに</h2>
                 <p>
@@ -93,12 +93,12 @@ get_header();
                     小さなご相談でも歓迎ですので、まずはお気軽にお声がけください。
                 </p>
 
-                <div class="about-page-cta">
-                    <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="btn btn-primary btn-lg">
+                <div class="p-page__cta">
+                    <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="c-button c-button--primary c-button--lg">
                         お問い合わせ・ご相談
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                     </a>
-                    <a href="<?php echo esc_url(home_url('/#works')); ?>" class="btn btn-ghost btn-lg">制作実績を見る</a>
+                    <a href="<?php echo esc_url(home_url('/#works')); ?>" class="c-button c-button--ghost c-button--lg">制作実績を見る</a>
                 </div>
 
             </article>

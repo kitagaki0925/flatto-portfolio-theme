@@ -1,0 +1,13 @@
+/* =========================================================
+   Project / Portfolio Archive
+   ========================================================= */
+.p-archive__page { padding-top: var(--header-h); }
+.p-archive__hero {
+  position: relative;
+  padding: 80px 0 60px;
+  overflow: hidden;
+  text-align: center;
+}
+.p-archive__title { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 16px; }
+.p-archive__desc { color: var(--text-muted); font-size: 1.125rem; }
+.p-archive__content { padding: 48px 0 100px; }

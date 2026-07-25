@@ -1,0 +1,18 @@
+/* =========================================================
+   Project / Single Post（ブログ記事詳細）
+   ========================================================= */
+.p-single-post__page { padding: calc(var(--header-h) + 60px) 0 100px; }
+.p-single-post__article { max-width: 760px; margin: 0 auto; }
+.p-single-post__header { margin-bottom: 40px; }
+.p-single-post__meta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+}
+.p-single-post__meta a:hover { color: var(--accent-1); }
+.p-single-post__title { font-size: clamp(2rem, 5vw, 3rem); }
+.p-single-post__thumbnail { margin-bottom: 40px; border-radius: var(--radius-xl); overflow: hidden; }
+.p-single-post__thumbnail img { width: 100%; }
+.p-single-post__tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 40px 0; }

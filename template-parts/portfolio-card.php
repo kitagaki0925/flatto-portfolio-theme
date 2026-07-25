@@ -6,48 +6,43 @@ $url       = get_post_meta(get_the_ID(), '_portfolio_url', true);
 $tech      = get_post_meta(get_the_ID(), '_portfolio_tech', true);
 $year      = get_post_meta(get_the_ID(), '_portfolio_year', true);
 ?>
-<article class="work-card reveal" data-category="<?php echo esc_attr($term_slug); ?>">
-    <a href="<?php the_permalink(); ?>" class="work-card-link">
-        <div class="work-card-image">
+<article class="c-work-card u-reveal js-reveal js-work-card" data-category="<?php echo esc_attr($term_slug); ?>">
+    <a href="<?php the_permalink(); ?>" class="c-work-card__link">
+        <div class="c-work-card__image">
             <?php if (has_post_thumbnail()): ?>
-                <?php the_post_thumbnail('portfolio-thumb', [
-                    'alt'     => get_the_title(),
-                    'loading' => 'lazy',
-                    // 3カラム=384px / 2カラム=50vw / 1カラム=100vw。高DPI時はsrcsetから2x版が選択される
-                    'sizes'   => '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 384px',
-                ]); ?>
+                <?php the_post_thumbnail('portfolio-thumb', ['alt' => get_the_title(), 'loading' => 'lazy']); ?>
             <?php else: ?>
-                <div class="work-card-placeholder">
+                <div class="c-work-card__placeholder">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
                 </div>
             <?php endif; ?>
-            <div class="work-card-overlay">
-                <span class="work-card-view">
+            <div class="c-work-card__overlay">
+                <span class="c-work-card__view">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                     View Project
                 </span>
             </div>
         </div>
-        <div class="work-card-body">
+        <div class="c-work-card__body">
             <?php if ($term_name): ?>
-            <span class="work-card-tag"><?php echo esc_html($term_name); ?></span>
+            <span class="c-tag"><?php echo esc_html($term_name); ?></span>
             <?php endif; ?>
-            <h3 class="work-card-title"><?php the_title(); ?></h3>
+            <h3 class="c-work-card__title"><?php the_title(); ?></h3>
             <?php if (has_excerpt()): ?>
-            <p class="work-card-excerpt"><?php the_excerpt(); ?></p>
+            <p class="c-work-card__excerpt"><?php the_excerpt(); ?></p>
             <?php endif; ?>
-            <div class="work-card-meta">
+            <div class="c-work-card__meta">
                 <?php if ($tech): ?>
-                <div class="work-tech">
+                <div class="c-work-card__tech">
                     <?php
                     $techs = array_slice(array_map('trim', explode(',', $tech)), 0, 3);
                     foreach ($techs as $t): ?>
-                    <span class="tech-badge"><?php echo esc_html($t); ?></span>
+                    <span class="c-badge"><?php echo esc_html($t); ?></span>
                     <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
                 <?php if ($year): ?>
-                <span class="work-year"><?php echo esc_html($year); ?></span>
+                <span class="c-work-card__year"><?php echo esc_html($year); ?></span>
                 <?php endif; ?>
             </div>
         </div>

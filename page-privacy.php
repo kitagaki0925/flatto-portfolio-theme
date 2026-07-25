@@ -26,20 +26,20 @@ $pp_revised    = '2026年6月9日';               // 例：2026年6月7日
 $pp_site_name  = get_bloginfo('name');
 ?>
 
-<main class="site-main">
+<main class="l-main">
 
     <!-- Hero -->
-    <section class="service-hero">
-        <div class="container">
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="service-back animate-fade-up">
+    <section class="p-service-page__hero">
+        <div class="l-container">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="p-service-page__back u-fade-up">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
                 トップへ戻る
             </a>
-            <div class="section-label animate-fade-up">Privacy Policy</div>
-            <h1 class="service-hero-title animate-fade-up delay-1">
-                プライバシー<span class="text-gradient">ポリシー</span>
+            <div class="c-eyebrow u-fade-up">Privacy Policy</div>
+            <h1 class="p-service-page__hero-title u-fade-up u-fade-up-delay-1">
+                プライバシー<span class="u-text-gradient">ポリシー</span>
             </h1>
-            <p class="service-hero-desc animate-fade-up delay-2">
+            <p class="p-service-page__hero-desc u-fade-up u-fade-up-delay-2">
                 <?php echo esc_html($pp_site_name); ?>（以下「当サイト」といいます）は、
                 お客様の個人情報を適切に取り扱うことを社会的責務と考え、
                 個人情報の保護に関する法律（個人情報保護法）その他の関係法令を遵守し、
@@ -49,9 +49,9 @@ $pp_site_name  = get_bloginfo('name');
     </section>
 
     <!-- Body -->
-    <section class="section">
-        <div class="container">
-            <article class="post-content legal-content">
+    <section class="l-section">
+        <div class="l-container">
+            <article class="c-wysiwyg c-wysiwyg--legal">
 
                 <h2>1. 事業者情報</h2>
                 <ul>
@@ -179,7 +179,7 @@ $pp_site_name  = get_bloginfo('name');
                     あるいは<a href="<?php echo esc_url(home_url('/#contact')); ?>">お問い合わせフォーム</a>よりご連絡ください。
                 </p>
 
-                <p class="legal-dates">
+                <p class="c-wysiwyg__legal-dates">
                     制定日：<?php echo esc_html($pp_enacted); ?><br>
                     最終改定日：<?php echo esc_html($pp_revised); ?>
                 </p>

@@ -1,0 +1,19 @@
+/* =========================================================
+   Project / Services（トップページ）
+   カード自体は component/_card.css の c-bento-card を使用
+   ========================================================= */
+.p-services { background: var(--bg-2); }
+
+.p-services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .p-services__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .p-services__grid { grid-template-columns: 1fr; }
+}

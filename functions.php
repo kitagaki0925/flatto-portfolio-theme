@@ -13,9 +13,7 @@ function portfolio_pro_setup() {
         'flex-height' => true,
     ]);
     add_image_size('portfolio-thumb', 800, 600, true);
-    add_image_size('portfolio-thumb-2x', 1600, 1200, true); // 高解像度(Retina)ディスプレイ向け
     add_image_size('portfolio-hero', 1200, 800, true);
-    add_image_size('portfolio-hero-2x', 2400, 1600, true); // 高解像度(Retina)ディスプレイ向け
 
     register_nav_menus([
         'primary' => __('Primary Menu', 'portfolio-pro'),
@@ -25,6 +23,26 @@ function portfolio_pro_setup() {
 add_action('after_setup_theme', 'portfolio_pro_setup');
 
 // ─── Enqueue Assets ────────────────────────────────────────────
+// FLOCSS の各レイヤーを Foundation → Layout → Component → Project → Utility の
+// 順に enqueue し、依存関係を前のハンドルに繋いでカスケード順を保証する。
+function portfolio_pro_css_layers() {
+    return [
+        'foundation' => ['variables', 'reset', 'base'],
+        'layout'     => ['container', 'header', 'footer'],
+        'component'  => [
+            'button', 'section-heading', 'badge', 'glow', 'card', 'process',
+            'skill-bar', 'stat', 'form', 'pagination', 'breadcrumb', 'post-nav',
+            'lightbox', 'wysiwyg', 'nav', 'work-filter', 'page-title',
+        ],
+        'project'    => [
+            'global-header', 'global-footer', 'hero', 'about', 'services',
+            'works', 'contact', 'portfolio-single', 'archive', 'blog',
+            'single-post', 'page', 'service-page', 'error',
+        ],
+        'utility'    => ['text-gradient', 'animate', 'spin'],
+    ];
+}
+
 function portfolio_pro_scripts() {
     $v = wp_get_theme()->get('Version');
 
@@ -34,8 +52,17 @@ function portfolio_pro_scripts() {
         [],
         null
     );
-    wp_enqueue_style('portfolio-pro-main', get_template_directory_uri() . '/assets/css/main.css', [], $v);
-    wp_enqueue_style('portfolio-pro-style', get_stylesheet_uri(), ['portfolio-pro-main'], $v);
+
+    $prev_handle = null;
+    foreach (portfolio_pro_css_layers() as $layer => $files) {
+        foreach ($files as $file) {
+            $handle = "portfolio-pro-{$layer}-{$file}";
+            $deps   = $prev_handle ? [$prev_handle] : [];
+            wp_enqueue_style($handle, get_template_directory_uri() . "/assets/css/{$layer}/_{$file}.css", $deps, $v);
+            $prev_handle = $handle;
+        }
+    }
+    wp_enqueue_style('portfolio-pro-style', get_stylesheet_uri(), [$prev_handle], $v);
 
     wp_enqueue_script('portfolio-pro-main', get_template_directory_uri() . '/assets/js/main.js', [], $v, true);
     wp_localize_script('portfolio-pro-main', 'portfolioPro', [

@@ -1,0 +1,31 @@
+/* =========================================================
+   Foundation / Variables
+   サイト全体で使用するCSSカスタムプロパティ
+   ========================================================= */
+:root {
+  --bg:          #080810;
+  --bg-2:        #0e0e1a;
+  --bg-card:     rgba(255, 255, 255, 0.04);
+  --bg-card-hover: rgba(255, 255, 255, 0.07);
+  --border:      rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
+
+  --text:        #f0f0f8;
+  --text-muted:  rgba(240, 240, 248, 0.55);
+  --text-faint:  rgba(240, 240, 248, 0.3);
+
+  --accent-1:    #7c3aed;   /* violet */
+  --accent-2:    #2563eb;   /* blue */
+  --accent-glow: rgba(124, 58, 237, 0.35);
+
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 60px rgba(124, 58, 237, 0.2);
+
+  --header-h:    72px;
+  --transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

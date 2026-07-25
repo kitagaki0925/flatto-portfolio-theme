@@ -1,0 +1,21 @@
+/* =========================================================
+   Layout / Header
+   ヘッダーの固定配置のみを担当。中身の組み方は
+   project/_global-header.css 側で定義する
+   ========================================================= */
+.l-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-h);
+  transition: var(--transition);
+}
+
+.l-header.is-scrolled {
+  background: rgba(8, 8, 16, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}

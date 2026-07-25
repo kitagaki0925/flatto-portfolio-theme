@@ -1,0 +1,18 @@
+/* =========================================================
+   Project / 404
+   ========================================================= */
+.p-error__page { padding: calc(var(--header-h) + 60px) 0 100px; }
+.p-error__container { text-align: center; }
+.p-error__code {
+  font-size: 10rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+.p-error__title { font-size: 2rem; margin-bottom: 16px; }
+.p-error__desc { color: var(--text-muted); margin-bottom: 32px; }

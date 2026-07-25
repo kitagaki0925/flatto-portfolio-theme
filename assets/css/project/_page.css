@@ -1,0 +1,14 @@
+/* =========================================================
+   Project / Generic Page（固定ページ本体・プロフィール等）
+   本文の見た目は component/_wysiwyg.css の c-wysiwyg を使用
+   ========================================================= */
+.p-page__page { padding: calc(var(--header-h) + 60px) 0 100px; }
+
+.p-page__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}

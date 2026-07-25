@@ -1,0 +1,119 @@
+/* =========================================================
+   Project / Service Page
+   web-design / wordpress / lp / corporate の4サービスページと、
+   about・privacy のヒーロー部分で共通利用
+   ========================================================= */
+.p-service-page__hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-h) + 80px) 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+.p-service-page__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 800px 600px at 60% 40%, rgba(37,99,235,0.08), transparent);
+  pointer-events: none;
+}
+.p-service-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  transition: color var(--transition);
+}
+.p-service-page__back:hover { color: var(--text); }
+.p-service-page__hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.p-service-page__hero-desc {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+.p-service-page__hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.p-service-page__overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.p-service-page__feature-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.p-service-page__feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.p-service-page__feature-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(37,99,235,0.12);
+  border: 1px solid rgba(37,99,235,0.3);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-2);
+}
+
+.p-service-page__includes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.p-service-page__pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.p-service-page__cta-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 80px;
+  text-align: center;
+}
+.p-service-page__cta-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+.p-service-page__cta-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto 40px;
+}
+.p-service-page__cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 1024px) {
+  .p-service-page__overview-grid { grid-template-columns: 1fr; gap: 48px; }
+  .p-service-page__includes-grid { grid-template-columns: repeat(2, 1fr); }
+  .p-service-page__pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+}
+@media (max-width: 768px) {
+  .p-service-page__hero { min-height: auto; padding: calc(var(--header-h) + 60px) 0 60px; }
+  .p-service-page__cta-wrapper { padding: 48px 28px; }
+  .p-service-page__includes-grid { grid-template-columns: 1fr; }
+}

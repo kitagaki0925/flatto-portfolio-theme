@@ -1,0 +1,13 @@
+/* =========================================================
+   Utility / Text Gradient
+   ========================================================= */
+.u-text-gradient {
+  background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 480px) {
+  span.u-text-gradient { font-size: 2.0rem; }
+}

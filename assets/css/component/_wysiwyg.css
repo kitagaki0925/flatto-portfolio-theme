@@ -1,0 +1,53 @@
+/* =========================================================
+   Component / WYSIWYG（the_content() 出力の共通スタイル）
+   旧 .post-content と .portfolio-content はほぼ同一ルールだったため統合。
+   本文中に生成される要素はエディタが出力するため要素セレクタで受ける
+   ========================================================= */
+.c-wysiwyg h2, .c-wysiwyg h3 { margin: 32px 0 16px; }
+.c-wysiwyg p { color: var(--text-muted); margin-bottom: 20px; }
+.c-wysiwyg a { color: #fff; text-decoration: none; }
+.c-wysiwyg img { border-radius: var(--radius-lg); margin: 32px 0; width: 100%; }
+.c-wysiwyg ul, .c-wysiwyg ol {
+  list-style: revert;
+  padding-left: 28px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.c-wysiwyg code {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.875em;
+}
+.c-wysiwyg pre {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+/* ポートフォリオ詳細：本文中の画像をライトボックスで拡大できる */
+.c-wysiwyg--lightbox img { cursor: zoom-in; }
+
+/* 法務ページ（プライバシーポリシー等）用の見出し・行間調整 */
+.c-wysiwyg--legal { max-width: 820px; }
+.c-wysiwyg--legal h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  margin: 48px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.c-wysiwyg--legal h2:first-child { margin-top: 0; }
+.c-wysiwyg--legal p { line-height: 1.9; }
+.c-wysiwyg--legal ul { line-height: 1.9; }
+.c-wysiwyg--legal ul li { margin-bottom: 8px; }
+.c-wysiwyg__legal-dates {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
