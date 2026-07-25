@@ -108,7 +108,8 @@
 
       const filter = btn.dataset.filter;
       workCards.forEach(card => {
-        const match = filter === '*' || card.dataset.category === filter;
+        const categories = card.dataset.category.split(' ').filter(Boolean);
+        const match = filter === '*' || categories.includes(filter);
         card.style.transition = 'opacity 0.3s, transform 0.3s';
         if (match) {
           card.style.opacity = '1';

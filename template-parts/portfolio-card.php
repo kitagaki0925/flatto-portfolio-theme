@@ -1,12 +1,12 @@
 <?php
-$terms     = get_the_terms(get_the_ID(), 'portfolio_category');
-$term_slug = $terms ? $terms[0]->slug : '';
-$term_name = $terms ? $terms[0]->name : '';
+$terms      = get_the_terms(get_the_ID(), 'portfolio_category');
+$term_slugs = $terms ? wp_list_pluck($terms, 'slug') : [];
+$term_name  = $terms ? $terms[0]->name : '';
 $url       = get_post_meta(get_the_ID(), '_portfolio_url', true);
 $tech      = get_post_meta(get_the_ID(), '_portfolio_tech', true);
 $year      = get_post_meta(get_the_ID(), '_portfolio_year', true);
 ?>
-<article class="c-work-card u-reveal js-reveal js-work-card" data-category="<?php echo esc_attr($term_slug); ?>">
+<article class="c-work-card u-reveal js-reveal js-work-card" data-category="<?php echo esc_attr(implode(' ', $term_slugs)); ?>">
     <a href="<?php the_permalink(); ?>" class="c-work-card__link">
         <div class="c-work-card__image">
             <?php if (has_post_thumbnail()): ?>
