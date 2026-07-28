@@ -17,6 +17,11 @@
                         </div>
                         <?php endif; ?>
                         <div class="c-blog-card__body">
+                            <?php
+                            $blog_cats = get_the_category();
+                            if ($blog_cats): ?>
+                            <span class="c-tag"><?php echo esc_html($blog_cats[0]->name); ?></span>
+                            <?php endif; ?>
                             <div class="c-blog-card__meta">
                                 <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
                             </div>

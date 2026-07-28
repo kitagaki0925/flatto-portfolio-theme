@@ -32,6 +32,7 @@
                     echo '<li><a href="' . esc_url(home_url('/#about')) . '">About</a></li>';
                     echo '<li><a href="' . esc_url(home_url('/#works')) . '">Works</a></li>';
                     echo '<li><a href="' . esc_url(home_url('/#services')) . '">Services</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/blog/')) . '">Blog</a></li>';
                     echo '</ul>';
                 },
             ]);
@@ -63,6 +64,7 @@
 					<li><a href="<?php echo esc_url(home_url('/corporate/')); ?>" class="c-mobile-nav-list__link js-mobile-nav-link">4.コーポレートサイト</a></li>
 				</ol>
 				</li>
+            <li><a href="<?php echo esc_url(home_url('/blog/')); ?>" class="c-mobile-nav-list__link js-mobile-nav-link">Blog</a></li>
             <li><a href="<?php echo esc_url(home_url('/#contact')); ?>" class="c-mobile-nav-list__link js-mobile-nav-link">Contact</a></li>
         </ul>
     </nav>
