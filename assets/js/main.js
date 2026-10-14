@@ -40,6 +40,17 @@
 
   document.querySelectorAll('.js-mobile-nav-link').forEach(link => link.addEventListener('click', closeMenu));
 
+  // ── Mobile sub menu (accordion) ───────────────────────
+  document.querySelectorAll('.js-mobile-subnav-toggle').forEach(toggle => {
+    const sub = document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!sub) return;
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      sub.classList.toggle('is-open', !expanded);
+    });
+  });
+
   // ── Scroll reveal ─────────────────────────────────────
   const reveals = document.querySelectorAll('.js-reveal');
   if (reveals.length) {

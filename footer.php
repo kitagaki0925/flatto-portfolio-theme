@@ -31,19 +31,25 @@
                     <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                     <li><a href="<?php echo esc_url(home_url('/#about')); ?>">About</a></li>
                     <li><a href="<?php echo esc_url(home_url('/#works')); ?>">Works</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
                     <li><a href="<?php echo esc_url(home_url('/#contact')); ?>">Contact</a></li>
                 </ul>
             </div>
 
+            <?php foreach (portfolio_pro_dropdown_menus() as $menu): ?>
             <div class="p-global-footer__nav">
-                <h4 class="p-global-footer__nav-title">Services</h4>
+                <h4 class="p-global-footer__nav-title"><?php echo esc_html($menu['label']); ?></h4>
                 <ul>
-                    <li><a href="<?php echo esc_url(home_url('/web-design/')); ?>">Web Design</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/wordpress/')); ?>">WordPress Development</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/lp/')); ?>">LP制作</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/corporate/')); ?>">コーポレートサイト</a></li>
+                    <?php foreach ($menu['items'] as $item): ?>
+                    <?php if ($item['url']): ?>
+                    <li><a href="<?php echo esc_url($item['url']); ?>"><?php echo esc_html($item['title']); ?></a></li>
+                    <?php else: ?>
+                    <li><span class="p-global-footer__nav-disabled" aria-disabled="true"><?php echo esc_html($item['title']); ?> <span class="c-badge">準備中</span></span></li>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </ul>
             </div>
+            <?php endforeach; ?>
         </div>
 
         <div class="p-global-footer__bottom">

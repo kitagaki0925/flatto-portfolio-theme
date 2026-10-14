@@ -72,6 +72,38 @@ function portfolio_pro_scripts() {
 }
 add_action('wp_enqueue_scripts', 'portfolio_pro_scripts');
 
+// ─── Navigation Menus (Services / Products) ────────────────────
+// ヘッダー（PCドロップダウン・モバイルアコーディオン）とフッターで共用する。
+// items の url を null にすると「準備中」として表示され、リンクにならない。
+function portfolio_pro_dropdown_menus() {
+    $indiestage_url = 'https://www.flatto.website/products/themes/indiestage/indiestage.html';
+
+    return [
+        'services' => [
+            'label' => 'Services',
+            'url'   => home_url('/#services'),
+            'all'   => ['url' => home_url('/#services'), 'label' => 'サービス一覧を見る', 'mobile_label' => 'サービス一覧'],
+            'items' => [
+                ['url' => home_url('/web-design/'), 'title' => 'Web Design',            'desc' => 'ブランドの個性を引き出すオリジナルデザイン'],
+                ['url' => home_url('/wordpress/'),  'title' => 'WordPress Development', 'desc' => '管理しやすく高速でSEOに強いサイト構築'],
+                ['url' => home_url('/lp/'),         'title' => 'LP制作',                'desc' => 'コンバージョンを意識したランディングページ'],
+                ['url' => home_url('/corporate/'),  'title' => 'コーポレートサイト',      'desc' => '信頼性を高め、新規顧客につながる企業サイト'],
+            ],
+        ],
+        'products' => [
+            'label' => 'Products',
+            'url'   => $indiestage_url,
+            'all'   => null,
+            'align' => 'right',
+            'items' => [
+                ['url' => $indiestage_url, 'title' => 'IndieStage', 'desc' => 'インディーゲームのための WordPress テーマ'],
+                ['url' => null,            'title' => 'DEMO',       'desc' => 'IndieStage のデモサイト'],
+                ['url' => null,            'title' => 'Manual',     'desc' => 'IndieStage の使い方マニュアル'],
+            ],
+        ],
+    ];
+}
+
 // ─── Portfolio Custom Post Type ────────────────────────────────
 function portfolio_pro_register_cpt() {
     $labels = [

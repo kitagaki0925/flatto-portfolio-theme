@@ -18,6 +18,108 @@
   background: var(--bg-card);
 }
 
+/* ── Dropdown（PC：Services にホバー / フォーカスで展開） ── */
+.c-nav-list__item--has-dropdown { position: relative; }
+.c-nav-list__item--has-dropdown > a { display: inline-flex; align-items: center; gap: 6px; }
+.c-nav-list__chevron { transition: transform var(--transition); }
+.c-nav-list__item--has-dropdown:hover > a,
+.c-nav-list__item--has-dropdown:focus-within > a { color: var(--text); background: var(--bg-card); }
+.c-nav-list__item--has-dropdown:hover .c-nav-list__chevron,
+.c-nav-list__item--has-dropdown:focus-within .c-nav-list__chevron { transform: rotate(180deg); }
+
+/* padding-top がリンクとパネルの隙間を埋め、マウス移動中に閉じないようにする */
+.c-nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 380px;
+  padding-top: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.c-nav-list__item--has-dropdown:hover .c-nav-dropdown,
+.c-nav-list__item--has-dropdown:focus-within .c-nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+/* 画面右寄りのメニュー用：パネルの右端をリンクの右端に揃え、画面外にはみ出さないようにする */
+.c-nav-dropdown--right { left: auto; right: 0; transform: translateY(8px); }
+.c-nav-list__item--has-dropdown:hover .c-nav-dropdown--right,
+.c-nav-list__item--has-dropdown:focus-within .c-nav-dropdown--right { transform: translateY(0); }
+
+.c-nav-dropdown__list {
+  padding: 8px;
+  background: rgba(14, 14, 26, 0.97);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+.c-nav-list .c-nav-dropdown__link {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+.c-nav-list .c-nav-dropdown__link:hover { background: var(--bg-card-hover); }
+.c-nav-dropdown--no-footer .c-nav-dropdown__list {
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+/* 準備中（リンクなし）の項目 */
+.c-nav-list .c-nav-dropdown__link.is-disabled { cursor: default; }
+.c-nav-list .c-nav-dropdown__link.is-disabled:hover { background: none; }
+.c-nav-dropdown__link.is-disabled .c-nav-dropdown__num,
+.c-nav-dropdown__link.is-disabled .c-nav-dropdown__title,
+.c-nav-dropdown__link.is-disabled .c-nav-dropdown__desc { opacity: 0.5; }
+.c-nav-dropdown__link.is-disabled:hover .c-nav-dropdown__title { transform: none; }
+.c-nav-dropdown__num {
+  flex-shrink: 0;
+  width: 1.75em; /* 01〜04 で字幅が違ってもタイトルの開始位置を揃える */
+  padding-top: 2px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.c-nav-dropdown__body { display: flex; flex-direction: column; gap: 2px; }
+.c-nav-dropdown__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: transform var(--transition);
+}
+.c-nav-dropdown__link:hover .c-nav-dropdown__title { transform: translateX(4px); }
+.c-nav-dropdown__desc {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.c-nav-list .c-nav-dropdown__all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: rgba(14, 14, 26, 0.97);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.c-nav-list .c-nav-dropdown__all:hover { color: var(--text); background: #16162a; }
+.c-nav-dropdown__all svg { transition: transform var(--transition); }
+.c-nav-dropdown__all:hover svg { transform: translateX(4px); }
+
 .c-hamburger {
   display: none;
   flex-direction: column;
@@ -55,6 +157,48 @@
   transition: var(--transition);
 }
 .c-mobile-nav-list__link:hover { color: var(--text); background: var(--bg-card); }
+
+/* Services などのサブメニュー開閉ボタン */
+.c-mobile-nav-list__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+.c-mobile-nav-list__toggle[aria-expanded="true"] { color: var(--text); }
+.c-mobile-nav-list__chevron { flex-shrink: 0; transition: transform var(--transition); }
+.c-mobile-nav-list__toggle[aria-expanded="true"] .c-mobile-nav-list__chevron { transform: rotate(180deg); }
+
+/* grid-template-rows 0fr ⇔ 1fr で高さ auto までアニメーションさせる */
+.c-mobile-nav-list__sub {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows var(--transition), visibility 0.3s;
+}
+.c-mobile-nav-list__sub.is-open { grid-template-rows: 1fr; visibility: visible; }
+.c-mobile-nav-list__sub-inner {
+  overflow: hidden;
+  min-height: 0;
+  margin-left: 16px;
+  border-left: 1px solid var(--border);
+}
+.c-mobile-nav-list__sub-link {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+.c-mobile-nav-list__sub-link:hover { color: var(--text); background: var(--bg-card); }
+.c-mobile-nav-list__sub-link.is-disabled { color: var(--text-faint); cursor: default; }
+.c-mobile-nav-list__sub-link.is-disabled:hover { color: var(--text-faint); background: none; }
 
 .c-social-links { display: flex; gap: 12px; }
 .c-social-links__link {
