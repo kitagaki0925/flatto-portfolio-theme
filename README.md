@@ -53,14 +53,14 @@ Portfolio → カテゴリ から作品カテゴリを追加（例：WordPress, 
 ### SNSリンク
 `footer.php` 内のTwitter・GitHub・LinkedInのhref属性を自身のURLに変更
 
-### スキル・数値
-`front-page.php` の `$skills` 配列と `.stat-number[data-count]` の値を編集
+### スキル
+`front-page.php` の `$skills` 配列を編集
 
 ### サービス内容
 `front-page.php` の Services セクションを直接編集
 
 ### カラー変更
-`assets/css/main.css` の `:root` 変数を変更：
+`assets/css/foundation/_variables.css` の `:root` 変数を変更：
 - `--accent-1`: メインカラー（現在：紫 #7c3aed）
 - `--accent-2`: サブカラー（現在：青 #2563eb）
 - `--bg`: 背景色（現在：#080810）
@@ -77,15 +77,30 @@ portfolio-theme/
 ├── index.php               # ブログ一覧
 ├── single.php              # ブログ記事
 ├── page.php                # 固定ページ
+├── page-*.php              # 個別固定ページ（about / corporate / lp / privacy / web-design / wordpress）
 ├── archive-portfolio.php   # 作品一覧
 ├── single-portfolio.php    # 作品詳細
 ├── 404.php                 # 404ページ
 ├── template-parts/
 │   └── portfolio-card.php  # 作品カードパーツ
 └── assets/
-    ├── css/main.css        # メインスタイルシート
+    ├── css/                # FLOCSS 構成（下記参照）
+    │   ├── foundation/     # 変数・リセット・ベース
+    │   ├── layout/         # l-*  コンテナ・ヘッダー・フッター
+    │   ├── component/      # c-*  ボタン・カードなど再利用パーツ
+    │   ├── project/        # p-*  ページ・セクション固有のスタイル
+    │   └── utility/        # u-*  単機能ヘルパー
     └── js/main.js          # アニメーション・インタラクション
 ```
+
+## CSS設計
+
+FLOCSS + BEM（`Block__Element--Modifier`）で構成しています。
+
+- クラス接頭辞：`l-` / `c-` / `p-` / `u-`、状態は `is-*`、JSのフックは `js-*`
+- 各ファイルは `functions.php` の `portfolio_pro_css_layers()` で
+  Foundation → Layout → Component → Project → Utility の順に読み込まれます
+- **CSSファイルを追加したときは、`portfolio_pro_css_layers()` の該当レイヤーにファイル名（`_` と `.css` を除いた名前）を追加してください**。追加しないと読み込まれません
 
 ## お問い合わせフォーム
 AJAXで非同期送信対応。WordPressの `wp_mail()` を使用。
